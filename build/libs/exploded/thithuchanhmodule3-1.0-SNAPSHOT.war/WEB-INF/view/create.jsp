@@ -40,7 +40,9 @@
             <input type="number" class="form-control" id="categoryID" placeholder="Enter categoryID" name="categoryID">
         </div>
         <input type="hidden" name="action" value="create">
-        <button type="submit" value="Search" class="btn-outline-primary">Create</button>
+        <button type="submit" value="Search" class="btn btn-primary">Create</button>
+        <button type="reset" value="Reset" class="btn btn-secondary">Reset</button>
+        <a href="/product" class="badge badge-primary" >back</a>
     </form>
 </div>
 </body>

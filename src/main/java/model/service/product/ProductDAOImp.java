@@ -17,8 +17,9 @@ public class ProductDAOImp implements IProductDAO {
             " (name, price,quantity,color,description,categoryID) VALUES " +
             " (?, ?, ?, ?, ?,?);";
     private static final String SELECT_PRODUCT_BY_ID_SQL = "SELECT * FROM Product where id = ?;";
+    private static final String SELECT_PRODUCT_BY_NAME_SQL = "SELECT * FROM Product where name like ?;";
     private static final String SELECT_ALL_PRODUCT_SQL = "SELECT * FROM Product";
-    private static final String DELETE_PRODUCT_BY_ID_SQL = "DELETE  FROM Product where productCode = ?;";
+    private static final String DELETE_PRODUCT_BY_ID_SQL = "DELETE  FROM Product where id = ?;";
     private static final String UPDATE_PRODUCT_SQL = "UPDATE Product SET " +
             "name = ?, price = ? , quantity = ?, color = ?, description = ?, categoryID = ?" +
             "where id = ?;";
@@ -26,6 +27,7 @@ public class ProductDAOImp implements IProductDAO {
 
     @Override
     public Product selectProduct(int id) throws SQLException {
+        System.out.println("SELECT_PRODUCT_BY_ID_SQL");
        Product product = new Product();
         Connection connection = JDBC.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PRODUCT_BY_ID_SQL);
@@ -41,6 +43,7 @@ public class ProductDAOImp implements IProductDAO {
                 String description = resultSet.getString("description");
                 int categoryID = resultSet.getInt("categoryID");
                 product.setId(id);
+                product.setName(name);
                 product.setPrice(price);
                 product.setQuantity(quantity);
                 product.setColor(color);
@@ -93,17 +96,48 @@ public class ProductDAOImp implements IProductDAO {
     }
 
     @Override
-    public boolean deleteProduct(Product product) {
+    public boolean deleteProduct(int  productID) {
+        System.out.println("DELETE_PRODUCT_BY_ID_SQL");
+        try
+            (Connection connection = JDBC.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_PRODUCT_BY_ID_SQL);) {
+            preparedStatement.setInt(1, productID);
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
     @Override
-    public List<Product> searchProduct(String productName) {
-        return null;
+    public List<Product> searchProduct(String productName) throws SQLException {
+        System.out.println("SELECT_PRODUCT_BY_NAME_SQL");
+        List<Product> productList = new ArrayList<>();
+        Connection connection = JDBC.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PRODUCT_BY_NAME_SQL);
+        preparedStatement.setString(1,"%"+productName+"%");
+        try {
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                double price = resultSet.getDouble("price");
+                int quantity = resultSet.getInt("quantity");
+                String color = resultSet.getString("color");
+                String description = resultSet.getString("description");
+                int categoryID = resultSet.getInt("categoryID");
+                productList.add(new Product(id, name, price, quantity, color, description, categoryID));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return productList;
     }
 
     @Override
     public List<Product> selectAllProduct() throws SQLException {
+        System.out.println("SELECT_ALL_PRODUCT_SQL");
         List<Product> productList = new ArrayList<>();
         Connection connection = JDBC.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PRODUCT_SQL);

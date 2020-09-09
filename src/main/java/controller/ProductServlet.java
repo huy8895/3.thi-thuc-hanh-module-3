@@ -112,7 +112,10 @@ public class ProductServlet extends HttpServlet {
         listProducts(request,response);
     }
 
-    private void deleteProduct(HttpServletRequest request, HttpServletResponse response) {
+    private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, IOException {
+        int productID = Integer.parseInt(request.getParameter("id"));
+        daoManager.productDAO.deleteProduct(productID);
+        listProducts(request,response);
     }
     private void listProducts(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         List<Product> productList = daoManager.productDAO.selectAllProduct();
@@ -121,7 +124,7 @@ public class ProductServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
-    private void search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         String productName = request.getParameter("searchBox");
         List<Product> productList = daoManager.productDAO.searchProduct(productName);
         request.setAttribute("productList", productList);
@@ -137,7 +140,10 @@ public class ProductServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
-    private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        int productID = Integer.parseInt(request.getParameter("id"));
+        Product product = daoManager.productDAO.selectProduct(productID);
+        request.setAttribute("product",product);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/delete.jsp");
         requestDispatcher.forward(request, response);
     }

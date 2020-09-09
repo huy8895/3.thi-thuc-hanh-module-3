@@ -40,7 +40,8 @@
             <input type="number" class="form-control" id="categoryID"  name="categoryID" value="${product.categoryID}">
         </div>
         <input type="hidden" name="action" value="edit">
-        <button type="submit" value="Search" class="btn-outline-primary">Edit</button>
+        <button type="submit" value="Search" class="btn btn-primary">Edit</button>
+        <a href="/product" class="badge badge-primary">back</a>
     </form>
 </div>
 

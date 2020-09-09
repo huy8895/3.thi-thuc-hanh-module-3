@@ -14,14 +14,19 @@
 </head>
 <body>
 <div class="container">
-    <h2>List products</h2>
+    <h2><a href="/product" class="badge badge-primary">List products</a> </h2>
     <form method="get" action="/product">
         <input type="text" name="searchBox">
         <input type="hidden" name="action" value="search">
-        <button type="submit" value="Search">Search</button>
+        <button type="submit" value="Search" class="btn btn-secondary">Search</button>
+        <a type="button" href="/product?action=create" class="badge badge-success">create</a>
     </form>
-    <a type="button" href="/product?action=create">create</a>
-    <table class="table">
+
+    <form method="get" action="/product">
+        <input type="hidden" name="action" value="create">
+        <button type="submit" class="btn-success">create</button>
+    </form>
+    <table class="table table-hover">
         <tr>
             <th>name</th>
             <th>price</th>
@@ -39,8 +44,8 @@
                 <td><c:out value="${product.color}"></c:out></td>
                 <td><c:out value="${product.description}"></c:out></td>
                 <td><c:out value="${product.categoryID}"></c:out></td>
-                <td><a href="/product?action=edit&id=${product.id}">edit</a></td>
-                <td><a href="/product?action=delete&id=${product.id}">delete</a></td>
+                <td><a href="/product?action=edit&id=${product.id}" class="badge badge-primary">edit</a></td>
+                <td><a href="/product?action=delete&id=${product.id}" class="badge badge-danger">delete</a></td>
             </tr>
 
         </c:forEach>

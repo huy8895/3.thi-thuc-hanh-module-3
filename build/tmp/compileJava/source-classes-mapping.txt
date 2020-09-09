@@ -1,18 +1,18 @@
-model/service/category/CategoryDAOImp.java
- model.service.category.CategoryDAOImp
-model/service/category/ICategory.java
- model.service.category.ICategory
+model/service/product/IProductDAO.java
+ model.service.product.IProductDAO
+controller/ProductServlet.java
+ controller.ProductServlet
 model/JDBC.java
  model.JDBC
 model/Product.java
  model.Product
 model/Category.java
  model.Category
-model/service/product/IProductDAO.java
- model.service.product.IProductDAO
 model/service/product/ProductDAOImp.java
  model.service.product.ProductDAOImp
-controller/ProductServlet.java
- controller.ProductServlet
+model/service/category/CategoryDAOImp.java
+ model.service.category.CategoryDAOImp
+model/service/category/ICategory.java
+ model.service.category.ICategory
 model/service/manager/DAOManager.java
  model.service.manager.DAOManager
