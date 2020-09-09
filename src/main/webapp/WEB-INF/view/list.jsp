@@ -19,10 +19,7 @@
         <input type="text" class="form-control" id="description" placeholder="Enter " name="searchBox">
         <input type="hidden" name="action" value="search">
         <button type="submit" value="Search" class="btn btn-secondary">Search</button>
-    </form>
-    <form method="get" action="/product">
-        <input type="hidden" name="action" value="create">
-        <button type="submit" class="btn btn-success">create</button>
+        <h3><a type="button" href="/product?action=create" class="btn btn-success">Create</a> </h3>
     </form>
     <table class="table table-hover">
         <tr>

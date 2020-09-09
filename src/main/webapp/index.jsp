@@ -14,7 +14,6 @@
 <body>
 <div class="container">
     <h2><a href="/product" class="badge badge-primary">List products</a> </h2>
-
 </div>
 </body>
 </html>
