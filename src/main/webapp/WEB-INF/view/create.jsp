@@ -42,7 +42,7 @@
         <input type="hidden" name="action" value="create">
         <button type="submit" value="Search" class="btn btn-primary">Create</button>
         <button type="reset" value="Reset" class="btn btn-secondary">Reset</button>
-        <a href="/product" class="badge badge-primary" >back</a>
+        <a href="/product" >back</a>
     </form>
 </div>
 </body>

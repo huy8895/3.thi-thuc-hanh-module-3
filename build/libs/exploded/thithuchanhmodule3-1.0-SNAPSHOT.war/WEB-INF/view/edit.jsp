@@ -41,7 +41,8 @@
         </div>
         <input type="hidden" name="action" value="edit">
         <button type="submit" value="Search" class="btn btn-primary">Edit</button>
-        <a href="/product" class="badge badge-primary">back</a>
+        <input type="hidden" name="id" value="${product.id}">
+        <h3><a href="/product" >back</a></h3>
     </form>
 </div>
 

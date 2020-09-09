@@ -42,7 +42,7 @@
         <input type="hidden" name="action" value="delete">
         <input type="hidden" name="id" value="${product.id}">
         <button type="submit" value="Search" class="btn btn-danger">Delete</button>
-        <a href="/product" class="badge badge-primary">Back</a>
+        <a href="/product" >Back</a>
 
     </form>
 </div>

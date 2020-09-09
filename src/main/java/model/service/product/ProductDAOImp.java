@@ -20,9 +20,7 @@ public class ProductDAOImp implements IProductDAO {
     private static final String SELECT_PRODUCT_BY_NAME_SQL = "SELECT * FROM Product where name like ?;";
     private static final String SELECT_ALL_PRODUCT_SQL = "SELECT * FROM Product";
     private static final String DELETE_PRODUCT_BY_ID_SQL = "DELETE  FROM Product where id = ?;";
-    private static final String UPDATE_PRODUCT_SQL = "UPDATE Product SET " +
-            "name = ?, price = ? , quantity = ?, color = ?, description = ?, categoryID = ?" +
-            "where id = ?;";
+    private static final String UPDATE_PRODUCT_SQL = "UPDATE Product SET name = ?, price = ? , quantity = ?, color = ?, description = ?, categoryID = ? where id = ?;";
 
 
     @Override
@@ -84,10 +82,11 @@ public class ProductDAOImp implements IProductDAO {
                  PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PRODUCT_SQL);) {
             preparedStatement.setString(1, product.getName());
             preparedStatement.setDouble(2, product.getPrice());
-            preparedStatement.setDouble(3, product.getQuantity());
+            preparedStatement.setInt(3, product.getQuantity());
             preparedStatement.setString(4, product.getColor());
-            preparedStatement.setInt(5, product.getCategoryID());
-            preparedStatement.setInt(6, product.getId());
+            preparedStatement.setString(5, product.getDescription());
+            preparedStatement.setInt(6, product.getCategoryID());
+            preparedStatement.setInt(7, product.getId());
             return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();

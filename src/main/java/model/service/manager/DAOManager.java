@@ -5,7 +5,7 @@ import model.service.product.ProductDAOImp;
 
 public class DAOManager {
     public final ProductDAOImp productDAO = new ProductDAOImp();
-    public final CategoryDAOImp userDAO = new CategoryDAOImp();
+    public final CategoryDAOImp categoryDAOImp = new CategoryDAOImp();
 
 
 }

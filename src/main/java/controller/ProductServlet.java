@@ -1,8 +1,8 @@
 package controller;
 
+import model.Category;
 import model.Product;
 import model.service.manager.DAOManager;
-import model.service.product.ProductDAOImp;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ProductServlet", urlPatterns = "/product")
@@ -90,7 +89,7 @@ public class ProductServlet extends HttpServlet {
     private void updateProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, IOException {
 
         int productID = Integer.parseInt(request.getParameter("id"));
-        Product product = daoManager.productDAO.selectProduct(productID);
+        System.out.println(productID + "edit");
         String name= request.getParameter("name");
         double price= Double.parseDouble(request.getParameter("price"));
         int  quantity= Integer.parseInt(request.getParameter("quantity"));
@@ -119,7 +118,9 @@ public class ProductServlet extends HttpServlet {
     }
     private void listProducts(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         List<Product> productList = daoManager.productDAO.selectAllProduct();
+
         request.setAttribute("productList", productList);
+        request.setAttribute("categoryDAOImp", daoManager.categoryDAOImp);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/list.jsp");
         requestDispatcher.forward(request, response);
     }
@@ -128,6 +129,7 @@ public class ProductServlet extends HttpServlet {
         String productName = request.getParameter("searchBox");
         List<Product> productList = daoManager.productDAO.searchProduct(productName);
         request.setAttribute("productList", productList);
+        request.setAttribute("categoryDAOImp", daoManager.categoryDAOImp);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/list.jsp");
         requestDispatcher.forward(request, response);
     }

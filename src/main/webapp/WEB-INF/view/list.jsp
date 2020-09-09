@@ -16,15 +16,13 @@
 <div class="container">
     <h2><a href="/product" class="badge badge-primary">List products</a> </h2>
     <form method="get" action="/product">
-        <input type="text" name="searchBox">
+        <input type="text" class="form-control" id="description" placeholder="Enter " name="searchBox">
         <input type="hidden" name="action" value="search">
         <button type="submit" value="Search" class="btn btn-secondary">Search</button>
-        <a type="button" href="/product?action=create" class="badge badge-success">create</a>
     </form>
-
     <form method="get" action="/product">
         <input type="hidden" name="action" value="create">
-        <button type="submit" class="btn-success">create</button>
+        <button type="submit" class="btn btn-success">create</button>
     </form>
     <table class="table table-hover">
         <tr>
@@ -33,7 +31,7 @@
             <th>quantity</th>
             <th>color</th>
             <th>description</th>
-            <th>categoryID</th>
+            <th>category</th>
             <td colspan="2">Action</td>
         </tr>
         <c:forEach  var="product" items="${productList}">
@@ -43,9 +41,9 @@
                 <td><c:out value="${product.quantity}"></c:out></td>
                 <td><c:out value="${product.color}"></c:out></td>
                 <td><c:out value="${product.description}"></c:out></td>
-                <td><c:out value="${product.categoryID}"></c:out></td>
-                <td><a href="/product?action=edit&id=${product.id}" class="badge badge-primary">edit</a></td>
-                <td><a href="/product?action=delete&id=${product.id}" class="badge badge-danger">delete</a></td>
+                <td><c:out value="${categoryDAOImp.selectCategory(product.categoryID).name}"></c:out></td>
+                <td><h4><a href="/product?action=edit&id=${product.id}" class="badge badge-primary">edit</a></h4></td>
+                <td><h4><a href="/product?action=delete&id=${product.id}" class="badge badge-danger">delete</a></h4></td>
             </tr>
 
         </c:forEach>

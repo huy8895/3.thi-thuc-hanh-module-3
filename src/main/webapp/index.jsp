@@ -9,8 +9,12 @@
 <html>
 <head>
     <title>Index</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<a href="/product">product</a>
+<div class="container">
+    <h2><a href="/product" class="badge badge-primary">List products</a> </h2>
+
+</div>
 </body>
 </html>
